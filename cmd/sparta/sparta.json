@@ -1,0 +1,6 @@
+{
+  "routes": {
+    "/": "https://github.com/bindl-dev/bindl",
+    "/bootstrap.sh": "https://raw.githubusercontent.com/bindl-dev/bindl/main/bootstrap.sh"
+  }
+}
