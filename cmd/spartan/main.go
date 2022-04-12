@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/bindl-dev/sparta"
+	"github.com/bindl-dev/spartan"
 )
 
 func main() {
@@ -17,14 +17,14 @@ func main() {
 	}
 }
 
-//go:embed sparta.json
+//go:embed spartan.json
 var conf []byte
 
 func run() error {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
 
-	s := sparta.NewServer(ctx, conf)
+	s := spartan.NewServer(ctx, conf)
 
 	go func() {
 		<-ctx.Done()

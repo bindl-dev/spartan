@@ -1,4 +1,4 @@
-package sparta
+package spartan
 
 import (
 	"context"
