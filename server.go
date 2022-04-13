@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"strings"
 )
 
 func NewServer(ctx context.Context, raw []byte) *http.Server {
@@ -32,15 +33,20 @@ func newHandler(raw []byte) http.Handler {
 }
 
 func (h Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	dst := h.Routes[req.URL.Path]
+	p := req.URL.Path
+	if len(p) > 1 && strings.HasSuffix(p, "/") {
+		p = p[:len(p)-1]
+	}
+
+	dst := h.Routes[p]
 	if dst == "" {
-		log.Printf("unknown path: %s", req.URL.Path)
+		log.Printf("unknown path: %s", p)
 		dst = h.Routes["/"]
 	}
 	if dst == "" {
 		w.WriteHeader(http.StatusNotImplemented)
 		return
 	}
-	log.Printf("[%d] %s -> %s", http.StatusTemporaryRedirect, req.URL.Path, dst)
+	log.Printf("[%d] %s -> %s", http.StatusTemporaryRedirect, p, dst)
 	http.Redirect(w, req, dst, http.StatusTemporaryRedirect)
 }
