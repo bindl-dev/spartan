@@ -1,7 +1,7 @@
 {
   "routes": {
     "/": "https://github.com/bindl-dev/bindl",
-    "/notes": "https://wilsonehusin.notion.site/Bindl-97a68a1526154ff1ae794104d29f3cb5",
+    "/notes": "https://wilsonehusin.notion.site/26d92c6ac4284b61ba0534009f568c56",
     "/bootstrap.sh": "https://raw.githubusercontent.com/bindl-dev/bindl/main/bootstrap.sh"
   }
 }
